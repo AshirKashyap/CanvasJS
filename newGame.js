@@ -3,29 +3,56 @@ var line = [0, 0, 0, 0];
 var lineChange = [1, 2, 3, 4];
 var color = ["black", "red", "orange", "yellow", "green", "blue",  "purple", "violet"];
 var i = 0;
+var drawSnowflake = false;
+var changeSnowflakeY = 1;
+var changeY = 2;
 
+class Snowflake {
+  constructor(radius, color, velocity) {
+    this.radius = radius;
+    this.color = color;
+    this.velocity = velocity;
+  }
+}
 
+var velocity1 = Math.random() * (0.005);
+var velocity2 = Math.random() * (0.005);
+var velocity3 = Math.random() * (0.005);
+
+var snowflake1 = new Snowflake(60, "white", velocity1);
+var snowflake2 = new Snowflake(20, "white", velocity2);
+var snowflake3 = new Snowflake(45, "white", velocity3);
 
 function changeColor(event) {
-  console.log(event)
+/*
+  Purpose: This is to deterine if the click should trigger the hat changing color
+  Inputs: The mouse click event
+  Returns: None
+*/
   var x = event.clientX;
   var y = event.clientY;
-  console.log(x)
-  console.log(y)
   if (x > 652 && x < 854) {
-    // console.log("correct x value");
   } if (y > 18 && y < 73) {
-      // console.log("correct y value");
-      // console.log("In I")
-      // console.log(x)
-      // console.log(y)
-      i += 1
+      i += 1;
       if (i > 7) {
         i = 0;
       }
     }
   }
 
+function snowflake(event) {
+/*
+  Purpose: This is to determine if the click should trigger drawing the snowman
+  Inputs: The mouse click event
+  Returns: None
+*/
+  var x = event.clientX;
+  var y = event.clientY;
+  if (x < 652 || x > 854) {
+  } if (y < 18 || y > 73) {
+      drawSnowflake = true;
+      }
+  }
 
 function drawAll()
 /*
@@ -35,19 +62,16 @@ function drawAll()
 */
 
 {
-
-
-
   context.beginPath();
-  context.rect(0, 0, canvas.width, canvas.height)
-  context.fillStyle = "#E5F8FF"
-  context.fillRect(0, 0, canvas.width, canvas.height)
+  context.rect(0, 0, canvas.width, canvas.height);
+  context.fillStyle = "#E5F8FF";
+  context.fillRect(0, 0, canvas.width, canvas.height);
   context.closePath();
 
   // Sets the background color to light blue
 
   context.beginPath();
-  context.arc(canvas.width / 2, canvas.height - (canvas.height / 4.75), 175, 0, 2 * Math.PI)
+  context.arc(canvas.width / 2, canvas.height - (canvas.height / 4.75), 175, 0, 2 * Math.PI);
   context.fillStyle = "#7FDCFF";
   context.fill();
   context.stroke();
@@ -56,7 +80,7 @@ function drawAll()
   // Draws the biggest circle for the bottom ball of the snowman
 
   context.beginPath();
-  context.arc(canvas.width / 2, canvas.height - (canvas.height / 1.76), 125, 0, 2 * Math.PI)
+  context.arc(canvas.width / 2, canvas.height - (canvas.height / 1.76), 125, 0, 2 * Math.PI);
   context.fillStyle = "#7FDCFF";
   context.fill();
   context.stroke();
@@ -65,7 +89,7 @@ function drawAll()
   // Draws the second biggest circle for the middle ball of the snowman
 
   context.beginPath();
-  context.arc(canvas.width / 2, canvas.height - (canvas.height / 1.205), 95, 0, 2 * Math.PI)
+  context.arc(canvas.width / 2, canvas.height - (canvas.height / 1.205), 95, 0, 2 * Math.PI);
   context.fillStyle = "#7FDCFF";
   context.fill();
   context.stroke();
@@ -74,7 +98,7 @@ function drawAll()
   // Draws the smallest circle for the top ball of the snowman
 
   context.beginPath();
-  context.arc(canvas.width / 2.1, canvas.height - (canvas.height / 1.15), 15, 0, 2 * Math.PI)
+  context.arc(canvas.width / 2.1, canvas.height - (canvas.height / 1.15), 15, 0, 2 * Math.PI);
   context.fillStyle = "black";
   context.fill();
   context.stroke();
@@ -83,7 +107,7 @@ function drawAll()
   // Draws the left eye for the snowman
 
   context.beginPath();
-  context.arc(canvas.width / 1.9, canvas.height - (canvas.height / 1.15), 15, 0, 2 * Math.PI)
+  context.arc(canvas.width / 1.9, canvas.height - (canvas.height / 1.15), 15, 0, 2 * Math.PI);
   context.fillStyle = "black";
   context.fill();
   context.stroke();
@@ -103,27 +127,25 @@ function drawAll()
   // Draws the nose for the snowman
 
   context.beginPath();
-  context.rect(canvas.width / 3.55, canvas.height / 2.35, 200, 38)
+  context.rect(canvas.width / 3.55, canvas.height / 2.35, 200, 38);
   context.fillStyle = "brown";
   context.fillRect(canvas.width / 3.55, canvas.height / 2.35, 200, 38);
   context.stroke();
   context.closePath();
-  // context.rotate(20 * Math.PI / 180);
 
   // Draws the left arm for the snowman
 
   context.beginPath();
-  context.rect(canvas.width / 1.72, canvas.height / 2.35, 200, 38)
+  context.rect(canvas.width / 1.72, canvas.height / 2.35, 200, 38);
   context.fillStyle = "brown";
   context.fillRect(canvas.width / 1.72, canvas.height / 2.35, 200, 38);
   context.stroke();
   context.closePath();
-  // context.rotate(20 * Math.PI / 180);
 
   // Draws the right arm for the snowman
 
   context.beginPath();
-  context.arc(canvas.width / 2, canvas.height - (canvas.height / 1.5), 20, 0, 2 * Math.PI)
+  context.arc(canvas.width / 2, canvas.height - (canvas.height / 1.5), 20, 0, 2 * Math.PI);
   context.fillStyle = "black";
   context.fill();
   context.stroke();
@@ -132,7 +154,7 @@ function drawAll()
   // Draws a button for the snowman
 
   context.beginPath();
-  context.arc(canvas.width / 2, canvas.height - (canvas.height / 1.75), 20, 0, 2 * Math.PI)
+  context.arc(canvas.width / 2, canvas.height - (canvas.height / 1.75), 20, 0, 2 * Math.PI);
   context.fillStyle = "black";
   context.fill();
   context.stroke();
@@ -141,7 +163,7 @@ function drawAll()
   // Draws a button for the snowman
 
   context.beginPath();
-  context.arc(canvas.width / 2, canvas.height - (canvas.height / 2.1), 20, 0, 2 * Math.PI)
+  context.arc(canvas.width / 2, canvas.height - (canvas.height / 2.1), 20, 0, 2 * Math.PI);
   context.fillStyle = "black";
   context.fill();
   context.stroke();
@@ -150,7 +172,7 @@ function drawAll()
   // Draws a button for the snowman
 
   context.beginPath();
-  context.arc(canvas.width / 2, canvas.height - (canvas.height / 3), 25, 0, 2 * Math.PI)
+  context.arc(canvas.width / 2, canvas.height - (canvas.height / 3), 25, 0, 2 * Math.PI);
   context.fillStyle = "black";
   context.fill();
   context.stroke();
@@ -159,7 +181,7 @@ function drawAll()
   // Draws a button for the snowman
 
   context.beginPath();
-  context.arc(canvas.width / 2, canvas.height - (canvas.height / 4.5), 25, 0, 2 * Math.PI)
+  context.arc(canvas.width / 2, canvas.height - (canvas.height / 4.5), 25, 0, 2 * Math.PI);
   context.fillStyle = "black";
   context.fill();
   context.stroke();
@@ -168,7 +190,7 @@ function drawAll()
   // Draws a button for the snowman
 
   context.beginPath();
-  context.arc(canvas.width / 2, canvas.height - (canvas.height / 9), 25, 0, 2 * Math.PI)
+  context.arc(canvas.width / 2, canvas.height - (canvas.height / 9), 25, 0, 2 * Math.PI);
   context.fillStyle = "black";
   context.fill();
   context.stroke();
@@ -177,33 +199,102 @@ function drawAll()
   // Draws a button for the snowman
 
   context.beginPath();
-  context.rect(canvas.width / 2.13, canvas.height / 150, 100, 55)
+  context.rect(canvas.width / 2.13, canvas.height / 150, 100, 55);
   context.fillStyle = color[i];
-  context.fillRect(canvas.width / 2.13, canvas.height / 150, 100, 55)
-  context.rect(canvas.width / 2.3, canvas.height / 20, 200, 25)
-  context.fillRect(canvas.width / 2.3, canvas.height / 20,200, 25)
+  context.fillRect(canvas.width / 2.13, canvas.height / 150, 100, 55);
+  context.rect(canvas.width / 2.3, canvas.height / 20, 200, 25);
+  context.fillRect(canvas.width / 2.3, canvas.height / 20,200, 25);
   context.closePath();
 
   // Draws a hat that changes color based on the user's clicks for the snowman
 
+  if (drawSnowflake) {
+    if (changeY < 200) {
+    changeY = changeY + changeSnowflakeY;
+    velocity1 = velocity1 + (velocity1 / 4);
+    context.fillStyle = snowflake1.color;
 
+    context.beginPath();
+    context.arc(200, 100 + velocity1,snowflake1.radius, 0, 2 * Math.PI);
+    context.fill();
+    context.closePath();
 
+    context.beginPath();
+    context.arc(1200, 100+velocity1,snowflake1.radius, 0, 2 * Math.PI);
+    context.fill();
+    context.closePath();
+
+    velocity2 = velocity2 + (velocity2 / 4);
+    context.fillStyle = snowflake2.color;
+
+    context.beginPath();
+    context.arc(300, 50+velocity2,snowflake2.radius, 0, 2 * Math.PI);
+    context.fill();
+    context.closePath();
+
+    context.beginPath();
+    context.arc(1400, 20+velocity2,snowflake2.radius, 0, 2 * Math.PI);
+    context.fill();
+    context.closePath();
+
+    context.beginPath();
+    context.arc(100, 400+velocity2,snowflake2.radius, 0, 2 * Math.PI);
+    context.fill();
+    context.closePath();
+
+    context.beginPath();
+    context.arc(300, 200+velocity2,snowflake2.radius, 0, 2 * Math.PI);
+    context.fill();
+    context.closePath();
+
+    context.beginPath();
+    context.arc(1400, 300+velocity2,snowflake2.radius, 0, 2 * Math.PI);
+    context.fill();
+    context.closePath();
+
+    context.beginPath();
+    context.arc(1300, 400+velocity2,snowflake2.radius, 0, 2 * Math.PI);
+    context.fill();
+    context.closePath();
+
+    context.fillStyle = snowflake3.color;
+    velocity3 = velocity3 + (velocity3 / 4);
+
+    context.beginPath();
+    context.arc(500, 450+velocity3,snowflake3.radius, 0, 2 * Math.PI);
+    context.fill();
+    context.closePath();
+
+    context.beginPath();
+    context.arc(1400, 500+velocity3,snowflake3.radius, 0, 2 * Math.PI);
+    context.fill();
+    context.closePath();
+
+    context.beginPath();
+    context.arc(1100, 420+velocity3,snowflake3.radius, 0, 2 * Math.PI);
+    context.fill();
+    context.closePath();
+
+    context.beginPath();
+    context.arc(300, 550+velocity3,snowflake3.radius, 0, 2 * Math.PI);
+    context.fill();
+    context.closePath();
+    }
+
+    else {
+      changeY = 1;
+      velocity1 = Math.random() * (0.005);
+      velocity2 = Math.random() * (0.005);
+      velocity3 = Math.random() * (0.005);
+    }
+  }
 
   // Loop the animation to the next frame.
   window.requestAnimationFrame(drawAll);
-
-
-  // context.beginPath();
-  // context.rect(150,250,375,375);
-  // context.fillStyle = "#FF0000";
-  // context.fillRect(150,250,375,375);
-  // context.stroke();
-  // context.closePath();
-
-  // Draws a red rectangle
 }
 
 window.addEventListener("mousedown", changeColor);
+window.addEventListener("mousedown", snowflake);
 
 // Get width/height of the browser window
 windowWidth = window.innerWidth;
